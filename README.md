@@ -29,7 +29,7 @@ Welcome to the Groupie Tracker project! The aim of this project is to understand
 ### Steps
 1. Clone the repository:
     ```sh
-    git clone https://ytrack.learn.ynov.com/git/rlena/Groupie_Tracker.git
+    git clone https://github.com/Torolgo/GroupieTracker.git
     ```
 2. Move to the project directory:
     ```sh
