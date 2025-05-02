@@ -33,7 +33,7 @@ Welcome to the Groupie Tracker project! The aim of this project is to understand
     ```
 2. Move to the project directory:
     ```sh
-    cd ./Groupie_Tracker/cmd
+    cd ./GroupieTracker/cmd
     ```
 3. Run the project:
     ```sh
