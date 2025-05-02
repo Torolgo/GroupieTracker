@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Groupie Tracker</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+    <link rel="shortcut icon" href="#"/>
+</head>
+<body class="bodyHomePage">
+<header>
+    <h1>GROUPIE TRACKER</h1>
+    <div class="icons">
+        <a href="/"><img src="../static/images/home.png" alt="Home Icon"></a>
+        <a><img src="../static/images/user.png" alt="User Icon"></a>
+    </div>
+    <div class="filter-apply">
+        <div class="search-bar">
+            <form class="search-form" action="/search/" method="get">
+                <div class="input-place">
+                    <input list="bands" type="text" id="app-search" placeholder="Search by Artist, members, location..">
+                </div>
+                <a type="button" class="button" id="filter-button" href="#">FILTERS</a>
+            </form>
+        </div>
+
+        <div id="filters" class="filters">
+            <div class="filters-content">
+                <form action="/filters" method="get">
+                    <div class="filter-group">
+                        <div class="filter-item">
+                            <p>Creation Date</p>
+                            <div class="slidecontainer">
+                                <input type="range" name="year" min="1958" max="2015" value="50" class="slider" id="myRange">
+                            </div>
+                            <div class="date-output">
+                                Year : <span id="yearOutput">1986</span>
+                            </div>
+                        </div>
+                        <div class="filter-item">
+                            <p>Numbers of Members</p>
+                            <input type="checkbox" id="one" name="member" value="1"/>
+                            <label for="one">1</label>
+                            <input type="checkbox" id="two" name="member" value="2"/>
+                            <label for="two">2</label>
+                            <input type="checkbox" id="three" name="member" value="3"/>
+                            <label for="three">3</label>
+                            <input type="checkbox" id="four" name="member" value="4"/>
+                            <label for="four">4</label>
+                            <input type="checkbox" id="five" name="member" value="5"/>
+                            <label for="five">5</label>
+                            <input type="checkbox" id="six" name="member" value="6"/>
+                            <label for="six">6</label>
+                            <input type="checkbox" id="seven" name="member" value="7"/>
+                            <label for="seven">7</label>
+                            <input type="checkbox" id="eight" name="member" value="8"/>
+                            <label for="eight">8</label>
+                        </div>
+                    </div>
+                    <div class="apply-button">
+                        <a class="button"><button class="apply" type="submit" name="apply" value="true">Apply</button></a>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</header>
+
+<main class="mainHomePage">
+    <div class="artist-grid">
+        {{range .Artists}}
+        <a href="/Card-Page?id={{.Id}}" class="card-link">
+            <div class="artist-card">
+                <img src="{{.Image}}" alt="icon of {{.Name}}">
+                <p>{{.Name}}</p>
+            </div>
+        </a>
+        {{end}}
+    </div>
+</main>
+<footer>
+    &copy; Ricard Léna et Dessenne Ylan
+</footer>
+<script>
+    const slider = document.getElementById('myRange');
+    const output = document.getElementById('yearOutput');
+
+    output.textContent = slider.value;
+
+    slider.addEventListener('input', function () {
+        output.textContent = slider.value;
+    });
+    document.getElementById('filter-button').addEventListener('click', function(event) {
+        event.preventDefault();
+        var filters = document.getElementById('filters');
+        if (filters.style.display === 'none' || filters.style.display === '') {
+            filters.style.display = 'block';
+        } else {
+            filters.style.display = 'none';
+        }
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const searchInput = document.getElementById('app-search');
+        const artistCards = document.querySelectorAll('.card-link');
+
+        searchInput.addEventListener('input', function() {
+            const searchText = searchInput.value.toLowerCase();
+            artistCards.forEach(function(card) {
+                const artistName = card.querySelector('p').textContent.toLowerCase();
+                if (searchText === '' || artistName.includes(searchText)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        const searchForm = document.querySelector('.search-form');
+        searchForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+        });
+
+        const searchButton = document.querySelector('.search-form .button');
+        searchButton.addEventListener('click', function(event) {
+            event.preventDefault();
+            searchInput.dispatchEvent(new Event('input'));
+        });
+    });
+</script>
+</body>
+</html>

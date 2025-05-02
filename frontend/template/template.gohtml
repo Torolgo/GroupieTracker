@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Card Page</title>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+          integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+          crossorigin=""/>
+    <link rel="stylesheet" href="../static/css/Artist-Card.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+            integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+            crossorigin=""></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+<header>
+    <h1>GROUPIE TRACKER</h1>
+    <div class="icons">
+        <a href="/"><img src="../static/images/home.png" alt="Home Icon"></a>
+        <a><img src="../static/images/user.png" alt="User Icon"></a>
+    </div>
+
+</header>
+
+<main>
+
+    <div class="left">
+        <section class="artists-infos">
+            <img src="{{(index .Artists 0).Image}}" alt="Image de {{(index .Artists 0).Name}}" class="artist-image">
+            <h1>{{(index .Artists 0).Name}}</h1>
+            <p>Creation Date: <span style="color: rgb(140, 82, 255)">{{(index .Artists 0).CreationDate}}</span></p>
+        </section>
+
+        <section class="members-box">
+            <h2>Members : </h2>
+            {{range (index .Artists 0).Members}}
+                <div class="member-item">{{.}}</div> <br>
+            {{end}}
+        </section>
+    </div>
+
+    <div class="right">
+
+        <section class="top">
+            <h3>First Album : {{(index .Artists 0).FirstAlbum}}</h3>
+        </section>
+
+        <section class="bottom">
+            <div class="location-box">
+                <h2>Concerts Locations : </h2>
+                <ul>
+                    {{range .Locations.Locations}}
+                        <li>{{.}}</li>
+                    {{end}}
+                </ul>
+            </div>
+            <div class="integration">
+                <div id="map"></div>
+            </div>
+        </section>
+    </div>
+</main>
+
+<div id="player"></div>
+
+<script>
+    let cities = "{{.Locations.Locations}}"
+    let artistName = "{{(index .Artists 0).Name}}"
+</script>
+<script src="../static/js/app.js"></script>
+<script src="../static/js/script.js"></script>
+</body>
+</html>
