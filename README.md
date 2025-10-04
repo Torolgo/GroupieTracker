@@ -1,4 +1,6 @@
 # Groupie Tracker Project
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Go Version](https://img.shields.io/badge/Go-%E2%89%A51.23-00ADD8?style=flat&logo=go&logoColor=white)](https://go.dev/)
 
 ## Introduction
 Welcome to the Groupie Tracker project! The aim of this project is to understand the API principle and its management.
@@ -74,3 +76,4 @@ The repository of the project is on [Gitea](https://ytrack.learn.ynov.com/git/rl
 ## Contributeurs:
 * [DESSENNE Ylan](https://ytrack.learn.ynov.com/git/dylan) - Developer
 * [RICARD Léna](https://ytrack.learn.ynov.com/git/rlena) - Developer
+
